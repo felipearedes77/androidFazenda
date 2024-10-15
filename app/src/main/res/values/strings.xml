@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">projeto</string>
+    <string name="entrar">Entrar</string>
+    <string name="Nomeusu">Nome de Usuário</string>
+    <string name="criarconta">Crie uma Conta</string>
+    <string name="titlecad">Crie sua conta</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="cep">Digite seu Cep</string>
+    <string name="rua">Digite seu Endereço</string>
+
+</resources>

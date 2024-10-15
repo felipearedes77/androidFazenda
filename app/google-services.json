@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "686099639093",
+    "project_id": "projetofazenda-74ee5",
+    "storage_bucket": "projetofazenda-74ee5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686099639093:android:887f850e500bceca73fa7c",
+        "android_client_info": {
+          "package_name": "com.example.projeto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC7Trt6G2Wo11hlExsCn5mSQo1g1m7m_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
