@@ -4,9 +4,12 @@ import com.example.projeto.model.Usuario;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+
 import retrofit2.http.POST;
 
 public interface ApiService {
+
     @POST("/clientes")
-    Call<Usuario> saveCliente(@Body Usuario usuario);
+    Call<Void> saveCliente(@Body Usuario usuario );
 }

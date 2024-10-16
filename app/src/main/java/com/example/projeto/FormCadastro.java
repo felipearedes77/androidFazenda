@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.projeto.ApiService.ApiService;
+import com.example.projeto.ApiService.NullOnEmptyConverterFactory;
 import com.example.projeto.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +27,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,10 +53,8 @@ public class FormCadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_form_cadastro);
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:1111")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -83,6 +87,20 @@ public class FormCadastro extends AppCompatActivity {
 
     }
     private void CadastrarUsuario(View v){
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS)
+                .addInterceptor(loggingInterceptor)
+                .build();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.111:8080")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(new NullOnEmptyConverterFactory())
+                .client(client)
+                .build();
         Log.d("Cadastro","Inciando o Metodo");
         String editnome = nome.getText().toString();
         String editemail =  email.getText().toString();
@@ -101,24 +119,31 @@ public class FormCadastro extends AppCompatActivity {
                     usuarionovo.setEmail(editemail);
                     usuarionovo.setRua(editrua);
                     usuarionovo.setCep(editcep);
+
                     ApiService service = retrofit.create(ApiService.class);
-                    Call<Usuario> call = service.saveCliente(usuarionovo);
-                    call.enqueue(new Callback<Usuario>() {
+                    Call<Void> call = service.saveCliente(usuarionovo);
+                    call.enqueue(new Callback<Void>() {
                         @Override
-                        public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                        public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful()){
-                                Usuario usuarioresposta = response.body();
-                                Log.d("Cadastro", "Cadastro realizado com sucesso: " + usuarioresposta);
-                                startActivity(new Intent(getApplicationContext(),FormLogin.class));
+                                Log.d("Cadastro", "Cadastro realizado com sucesso!");
+                                iniciarLogin();
                             }
                             else {
-                                Log.e("Cadastro","Falhou o Cadastro, código:" +  + response.code());
+                                try {
+                                    Log.e("RespostaAPI","Falhou o Cadastro, código:" +  + response.code());
+                                    Log.e("RespostaAPI","Mensagem de erro:" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+
 
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<Usuario> call, Throwable throwable) {
+                        public void onFailure(Call<Void> call, Throwable throwable) {
                             Log.e("Cadastro","Falha na Conexao" + throwable.getMessage());
                         }
                     });
@@ -175,5 +200,9 @@ public class FormCadastro extends AppCompatActivity {
         rua=findViewById(R.id.rua);
         cep=findViewById(R.id.cep);
         btn_cadastro=findViewById(R.id.btn_cadastro);
+    }
+
+    private void iniciarLogin(){
+        startActivity(new Intent(FormCadastro.this,FormLogin.class));
     }
 }

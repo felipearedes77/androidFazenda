@@ -11,7 +11,6 @@ public class Usuario {
     public Usuario() {
         this.nome = nome;
         this.email = email;
-
         this.cep = cep;
         this.rua = rua;
     }
