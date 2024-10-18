@@ -11,8 +11,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavHost;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projeto.adapter.ItensPHAdapter;
+import com.example.projeto.arrays.ConstrantsHomes;
 import com.example.projeto.databinding.ActivityHomeBinding;
+import com.example.projeto.model.ItensParaHome;
+
+import java.util.ArrayList;
 
 public class home extends AppCompatActivity {
 
@@ -20,11 +26,11 @@ public class home extends AppCompatActivity {
     private NavHostFragment navHostFragment;
     private NavController navController;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initNavigation();

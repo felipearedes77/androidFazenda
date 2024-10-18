@@ -1,14 +1,29 @@
 package com.example.projeto.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.projeto.FormLogin;
 import com.example.projeto.R;
+import com.example.projeto.adapter.ItensPHAdapter;
+import com.example.projeto.arrays.ConstrantsHomes;
+import com.example.projeto.databinding.FragmentHomeBinding;
+import com.example.projeto.model.ItensParaHome;
+import com.example.projeto.model.RecyclerItemClickListener;
+import com.example.projeto.tela_principal;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +40,9 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FragmentHomeBinding binding;
+    private ItensPHAdapter itensPHAdapter;
+    private ArrayList<ItensParaHome> homeList;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -48,19 +66,55 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater,container,false);
+        return binding.getRoot();
+    }
+    @Override
+    public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view ,savedInstanceState);
+
+        homeList = ConstrantsHomes.getHomeData();
+        RecyclerView recyclerViewHome = binding.RecyclerViewHome;
+        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewHome.setHasFixedSize(true);
+        itensPHAdapter = new ItensPHAdapter(homeList,getContext());
+        recyclerViewHome.setAdapter(itensPHAdapter);
+        recyclerViewHome.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), recyclerViewHome, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Log.d("rapid", "onItemClick position: " + position);
+                        if(position==1){
+                            callProdutos();
+                        }
+                        else{
+                            if (position==2)
+                                callPerfil();
+                        }
+
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+                        Log.d("rapid", "onItemLongClick pos = " + position);
+                    }
+                })
+        );
+    }
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null; // Prevent memory leaks by nulling the binding
+    }
+    private void callProdutos() {
+        Intent intent = new Intent(getActivity(), tela_principal.class);
+        startActivity(intent);
+    }
+    private void callPerfil() {
+        Intent intent = new Intent(getActivity(), FormLogin.class);
+        startActivity(intent);
     }
 }

@@ -8,12 +8,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <View
-        android:id="@+id/containerinfo1"
-        style="@style/ContainerComponentFragment"
-        android:layout_gravity="center"
-        android:elevation="2dp" />
-
     <ImageView
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -21,5 +15,12 @@
         android:layout_margin="30dp"
         android:src="@drawable/home"
         android:elevation="2dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewHome"
+        android:layout_width="wrap_content"
+        android:layout_height="550dp"
+        android:layout_gravity="center"
+        />
 
 </FrameLayout>
