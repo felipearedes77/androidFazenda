@@ -7,10 +7,19 @@
     tools:context=".fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+
+    <View
+        android:id="@+id/containerinfo1"
+        style="@style/ContainerComponentFragment"
         android:layout_gravity="center"
-        android:src="@drawable/home"/>
+        android:elevation="2dp" />
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="30dp"
+        android:src="@drawable/home"
+        android:elevation="2dp"/>
 
 </FrameLayout>
