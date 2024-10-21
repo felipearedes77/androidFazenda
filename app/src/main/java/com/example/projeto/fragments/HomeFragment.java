@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onItemClick(View view, int position) {
                         Log.d("rapid", "onItemClick position: " + position);
-                        if(position==1){
+                        if(position==0){
                             callProdutos();
                         }
                         else{

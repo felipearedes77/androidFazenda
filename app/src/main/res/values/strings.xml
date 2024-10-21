@@ -17,6 +17,9 @@ natural, para o dia adoçar!</string>
     <string name="menu_produtos">Produtos</string>
     <string name="menu_sobre">Sobre</string>
     <string name="menu_perfil">Perfil</string>
+    <string name="descsobre">Uma fazenda urbana, dedicada à produção e distribuição de alimentos naturais, busca otimizar seus processos para garantir a melhor qualidade possível dos frutos colhidos. O foco é melhorar a comunicação entre os setores da fazenda e facilitar o acesso às informações sobre cada etapa da produção, desde o planejamento até a distribuição dos alimentos.
+Sistema adotado pela fazenda auxiliará no controle das quantidades colhidas e doadas, permitindo um monitoramento mais preciso e contribuindo para a preservação dos recursos naturais. Além disso, a fazenda implementa práticas de cultivo que visam melhorar a qualidade dos frutos, como o uso eficiente da segurança, técnicas de compostagem para enriquecer o solo e o manejo sustentável das plantações, garantindo uma colheita saudável e nutritiva. Através dessas práticas, o objetivo não é apenas aumentar a produtividade, mas também reduzir o desperdício e promover uma produção mais sustentável.
+</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

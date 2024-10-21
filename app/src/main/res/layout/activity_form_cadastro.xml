@@ -73,7 +73,7 @@
 
         />
     <EditText
-        android:id="@+id/rua"
+        android:id="@+id/endereco"
         style="@style/Edit_Text"
         android:hint="@string/rua"
         android:inputType="text"

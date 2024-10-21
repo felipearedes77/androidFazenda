@@ -6,13 +6,14 @@ public class Usuario {
     private String email;
     private String senha;
     private String cep;
-    private String rua;
+    private String endereco;
 
     public Usuario() {
         this.nome = nome;
-        this.email = email;
+        this.endereco = endereco;
         this.cep = cep;
-        this.rua = rua;
+        this.email = email;
+        this.senha = senha;
     }
 
     public String getNome() {
@@ -46,12 +47,13 @@ public class Usuario {
     public void setCep(String cep) {
         this.cep = cep;
     }
-
-    public String getRua() {
-        return rua;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
+
+
 }

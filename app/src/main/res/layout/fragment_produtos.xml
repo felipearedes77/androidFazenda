@@ -13,5 +13,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
         android:src="@drawable/shopping_cart"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewProdutos"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:layout_gravity="center"
+        />
 
 </FrameLayout>

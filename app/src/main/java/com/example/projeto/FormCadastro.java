@@ -40,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FormCadastro extends AppCompatActivity {
 
-    private EditText nome ,email ,senha , cep , rua;
+    private EditText nome ,email ,senha , cep ,endereco;
     private Button btn_cadastro;
     private Retrofit retrofit;
 
@@ -68,9 +68,9 @@ public class FormCadastro extends AppCompatActivity {
                 String editnome = nome.getText().toString();
                 String editemail =  email.getText().toString();
                 String editsenha = senha.getText().toString();
-                String editrua = rua.getText().toString();
+                String editenderco = endereco.getText().toString();
                 String editcep = cep.getText().toString();
-                if (editnome.isEmpty() || editemail.isEmpty() || editsenha.isEmpty() || editrua.isEmpty() ||
+                if (editnome.isEmpty() || editemail.isEmpty() || editsenha.isEmpty() || editenderco.isEmpty() ||
                 editcep.isEmpty()){
 
                     Snackbar snackbar = Snackbar.make(v,mensagens[0],Snackbar.LENGTH_SHORT);
@@ -105,7 +105,7 @@ public class FormCadastro extends AppCompatActivity {
         String editnome = nome.getText().toString();
         String editemail =  email.getText().toString();
         String editsenha = senha.getText().toString();
-        String editrua = rua.getText().toString();
+        String editendereco = endereco.getText().toString();
         String editcep = cep.getText().toString();
 
 
@@ -117,7 +117,7 @@ public class FormCadastro extends AppCompatActivity {
                     Usuario usuarionovo = new Usuario();
                     usuarionovo.setNome(editnome);
                     usuarionovo.setEmail(editemail);
-                    usuarionovo.setRua(editrua);
+                    usuarionovo.setEndereco(editendereco);
                     usuarionovo.setCep(editcep);
 
                     ApiService service = retrofit.create(ApiService.class);
@@ -197,7 +197,7 @@ public class FormCadastro extends AppCompatActivity {
         nome=findViewById(R.id.nome);
         email=findViewById(R.id.email);
         senha=findViewById(R.id.senha);
-        rua=findViewById(R.id.rua);
+        endereco=findViewById(R.id.endereco);
         cep=findViewById(R.id.cep);
         btn_cadastro=findViewById(R.id.btn_cadastro);
     }
