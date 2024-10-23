@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.content.Context;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +23,10 @@ public class tela_principal extends AppCompatActivity {
      private ActivityTelaPrincipalBinding binding;
      private FoodAdapter foodAdapter;
      private ArrayList<Food> foodList;
+    String[] ids = {
+            "ecf534b0-13d8-4560-bf49-6dd6ad4773c6",
+            "02eb1680-22a3-4006-88d1-46060f4977ab"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,8 @@ public class tela_principal extends AppCompatActivity {
                 new RecyclerItemClickListener(tela_principal.this, recyclerViewFood ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         Log.d("rapid", "onItemClick position: " + position);
-                        ChamarPagamentos();
+                        String idParaProduto = ids[position]; // Obtém o ID correspondente
+                        ChamarPagamentos(position, idParaProduto);
 
                     }
 
@@ -55,9 +60,17 @@ public class tela_principal extends AppCompatActivity {
 
 
     }
-    private void ChamarPagamentos(){
-        Intent intent = new Intent(tela_principal.this, pagamento.class);
-        startActivity(intent);
+    private void ChamarPagamentos(int position, String idParaProduto){
+        Food food = foodList.get(position);
+        if (food != null) {
+            Intent intent = new Intent(tela_principal.this, pagamento.class);
+            intent.putExtra("produtoNome", food.getNameFood());
+            intent.putExtra("produtoImagem", food.getImgFood());
+            intent.putExtra("produtoID", idParaProduto);
+            startActivity(intent);
+        } else {
+            Log.e("ChamarPagamentos", "O objeto food é nulo.");
+        }
     }
 
 

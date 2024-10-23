@@ -15,12 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.projeto.FormLogin;
-import com.example.projeto.R;
 import com.example.projeto.adapter.ItensPHAdapter;
-import com.example.projeto.arrays.ConstrantsHomes;
 import com.example.projeto.arrays.ConstrantsProdutos;
-import com.example.projeto.databinding.FragmentHomeBinding;
 import com.example.projeto.databinding.FragmentProdutosBinding;
+import com.example.projeto.model.Food;
 import com.example.projeto.model.ItensParaHome;
 import com.example.projeto.model.RecyclerItemClickListener;
 import com.example.projeto.tela_principal;
@@ -102,7 +100,7 @@ public class ProdutosFragment extends Fragment {
                         }
                         else{
                             if (position==2)
-                                callPerfil();
+                                callDoa();
                         }
 
                     }
@@ -122,7 +120,7 @@ public class ProdutosFragment extends Fragment {
         Intent intent = new Intent(getActivity(), tela_principal.class);
         startActivity(intent);
     }
-    private void callPerfil() {
+    private void callDoa() {
         Intent intent = new Intent(getActivity(), FormLogin.class);
         startActivity(intent);
     }

@@ -1,6 +1,11 @@
 package com.example.projeto;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,17 +13,68 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class pagamento extends AppCompatActivity {
+import com.example.projeto.ApiService.ApiService;
+import com.example.projeto.model.Produtos;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class pagamento extends AppCompatActivity {
+    private TextView txtProdutoNome ,txtPreco , txtQtdEstoque;
+    private ImageView imgProduto;
+    private Retrofit retrofit;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pagamento);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        Intent intent = getIntent();
+        String produtoNome = intent.getStringExtra("produtoNome");
+        int produtoImagem = intent.getIntExtra("produtoImagem", R.drawable.banana1);
+        String produtoID = intent.getStringExtra("produtoID");
+        txtProdutoNome = findViewById(R.id.produtopag);
+        imgProduto = findViewById(R.id.imgpag);
+        txtProdutoNome.setText(produtoNome);
+        imgProduto.setImageResource(produtoImagem);
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.111:1777")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<Produtos> call = apiService.findById(produtoID);
+        call.enqueue(new Callback<Produtos>() {
+                         @Override
+                         public void onResponse(Call<Produtos> call, Response<Produtos> response) {
+                             if (response.isSuccessful() && response.body() != null) {
+                                 Produtos produto = response.body();
+                                 txtPreco = findViewById(R.id.preco);
+                                 txtQtdEstoque = findViewById(R.id.qtdestoque);
+                                 txtPreco.setText(String.valueOf(produto.getPreco()));
+                                 txtQtdEstoque.setText(String.valueOf(produto.getQtd_estoque()));
+                             } else {
+                                 Log.e("pagamento", "Resposta vazia: " + response.message());
+                             }
+                         }
+
+                         @Override
+                         public void onFailure(Call<Produtos> call, Throwable t) {
+
+                         }
+                     });
+                ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                    return insets;
+                });
+
+
     }
+
 }

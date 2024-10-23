@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class FormLogin extends AppCompatActivity {
     private TextView tela_cadastro;
@@ -31,8 +32,10 @@ public class FormLogin extends AppCompatActivity {
     private Button btnentrar;
     private ProgressBar ProgressBar;
     private Usuario usuario;
-    private FirebaseAuth entrar;
-    String[] mensagens = {"Preencha os Campos!","Login realizado!", "Erro no Login"};
+    private FirebaseAuth auth;
+    private FirebaseAuth user;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    String[] mensagens = {"Preencha os Campos!","Login realizado!", "Erro no Login","Voce ja esta logado"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,10 @@ public class FormLogin extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        autenticacao();
         IniciaComponentes();
-        FazerLogin();
+        
         ProgressBar.setVisibility(View.GONE);
         btnentrar.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SuspiciousIndentation")
@@ -72,7 +77,7 @@ public class FormLogin extends AppCompatActivity {
                 EntrarnaConta( usuario );
             }
         });
-
+        estado();
 
         tela_cadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,8 +90,8 @@ public class FormLogin extends AppCompatActivity {
     }
     private void EntrarnaConta(Usuario usuario){
         ProgressBar.setVisibility(View.VISIBLE);
-        entrar = FirebaseAuth.getInstance();
-        entrar.signInWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
+        auth = FirebaseAuth.getInstance();
+        auth.signInWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -110,16 +115,54 @@ public class FormLogin extends AppCompatActivity {
 
     private void IniciaComponentes() {
         tela_cadastro = findViewById(R.id.tela_cadastro);
-
-    }
-
-    private void FazerLogin(){
         email = findViewById(R.id.tlemail);
         senha = findViewById(R.id.senhafirst);
         ProgressBar = findViewById(R.id.ProgressBar);
         btnentrar = findViewById(R.id.btn_entrar);
-
         email.requestFocus();
+    }
 
+
+    private void autenticacao(){
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if(user == null){
+            startActivity(new Intent(this, FormCadastro.class));
+        }
+        else {
+
+            startActivity(new Intent(this, PerfilDoUsuario.class));
+
+        }
+    }
+    private void estado(){
+        auth = FirebaseAuth.getInstance();
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+            if (user!=null){
+                Toast.makeText(getBaseContext(),"Usuario"+ currentUser.getEmail() +"esta logado",Toast.LENGTH_LONG).show();
+            }else{
+
+            }
+        }
+    };
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(authStateListener!=null){
+            auth.removeAuthStateListener(authStateListener);
+        }
     }
 }
