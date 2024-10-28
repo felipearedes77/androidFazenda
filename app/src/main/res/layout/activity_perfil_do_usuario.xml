@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".PerfilDoUsuario">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <androidx.cardview.widget.CardView
+        android:id="@id/cardusuario"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="60dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/baseline_person_24"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/titleidusuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardusuario"
+        android:layout_margin="20dp"
+        tools:ignore="MissingConstraints"
+        android:textSize="18dp"
+        android:text="ID"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/idusuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleidusuario"
+        android:layout_margin="10dp"
+        tools:ignore="MissingConstraints"
+        android:text="uuid"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+    <Button
+        android:id="@+id/btn_deslogar"
+        style="@style/buttom2"
+        android:text="@string/Deslogar"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idusuario"/>
+    <Button
+        android:id="@+id/btn_editar"
+        style="@style/buttom2"
+        android:text="@string/Editar"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_deslogar"/>
+    <Button
+        android:id="@+id/btn_salvar"
+        style="@style/buttom2"
+        android:text="@string/Salvar"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_editar"/>
+    <TextView
+        android:id="@+id/titleNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/btn_salvar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Nome"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleNome"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Nome do Usuário"/>
+    <EditText
+        android:id="@+id/editextnome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Digite seu Nome"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleNome"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- RG -->
+    <TextView
+        android:id="@+id/titleRg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/nome"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="RG"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleRg"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="RG do Usuário"/>
+    <EditText
+        android:id="@+id/edittextrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Rg"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleRg"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- CPF -->
+    <TextView
+        android:id="@+id/titleCpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/rg"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="CPF"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/cpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleCpf"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="CPF do Usuário"/>
+    <EditText
+        android:id="@+id/editcpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Cpf"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleCpf"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- E-mail -->
+    <TextView
+        android:id="@+id/titleEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/cpf"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="E-mail"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="E-mail do Usuário"/>
+    <EditText
+        android:id="@+id/edittextemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Email"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- Telefone -->
+    <TextView
+        android:id="@+id/titleTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Telefone"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/telefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleTelefone"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Telefone do Usuário"/>
+    <EditText
+        android:id="@+id/editexttelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Telefone"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleTelefone"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- Celular -->
+    <TextView
+        android:id="@+id/titleCelular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/telefone"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Celular"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/celular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleCelular"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Celular do Usuário"/>
+    <EditText
+        android:id="@+id/editextcelular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Celular"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleCelular"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+    <!-- Cep -->
+    <TextView
+        android:id="@+id/titleCep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleEndereco"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="30dp"
+        android:text="CEP"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/cep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleCep"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="CEP do Usuário"/>
+    <EditText
+        android:id="@+id/editextcep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Cep"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleCep"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- Endereço -->
+    <TextView
+        android:id="@+id/titleEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/celular"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Endereço"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/endereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleEndereco"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Endereço do Usuário"/>
+    <EditText
+        android:id="@+id/editextendereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Endereço"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleEndereco"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- Complemento -->
+    <TextView
+        android:id="@+id/titleComplemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/cep"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Complemento"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/complemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleComplemento"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Complemento do Usuário"/>
+    <EditText
+        android:id="@+id/editextcomplemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite o Complemento"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleComplemento"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+    <!--Numero-->
+    <TextView
+        android:id="@+id/titleNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/complemento"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Número"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/numero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleNumero"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Número do Usuário"/>
+    <EditText
+        android:id="@+id/editextnumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Nome"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleNumero"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+    <!-- Bairro -->
+    <TextView
+        android:id="@+id/titleBairro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/numero"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Bairro"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/bairro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleBairro"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Bairro do Usuário"/>
+    <EditText
+        android:id="@+id/editextBairro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Bairro"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleBairro"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+    <!--Estado-->
+    <TextView
+        android:id="@+id/titleEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/bairro"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:text="Estado"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/estado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/titleEstado"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:text="Estado do Usuário"/>
+    <EditText
+        android:id="@+id/editextestado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Digite seu Estado (Apenas a Sigla)"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleEstado"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
