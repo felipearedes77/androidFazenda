@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.projeto.FormLogin;
+import com.example.projeto.Verduras;
 import com.example.projeto.adapter.ItensPHAdapter;
 import com.example.projeto.arrays.ConstrantsProdutos;
 import com.example.projeto.databinding.FragmentProdutosBinding;
@@ -99,8 +100,12 @@ public class ProdutosFragment extends Fragment {
                             callFrutas();
                         }
                         else{
-                            if (position==2)
-                                callDoa();
+                            if (position==1)
+                                callVerduras();
+                            else {
+                                if (position==2)
+                                    callDoa();
+                            }
                         }
 
                     }
@@ -115,6 +120,10 @@ public class ProdutosFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null; // Prevent memory leaks by nulling the binding
+    }
+    private void  callVerduras(){
+        Intent intent = new Intent(getActivity(), Verduras.class);
+        startActivity(intent);
     }
     private void callFrutas() {
         Intent intent = new Intent(getActivity(), tela_principal.class);

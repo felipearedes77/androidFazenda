@@ -23,9 +23,9 @@ public class tela_principal extends AppCompatActivity {
      private ActivityTelaPrincipalBinding binding;
      private FoodAdapter foodAdapter;
      private ArrayList<Food> foodList;
-    String[] ids = {
-            "ecf534b0-13d8-4560-bf49-6dd6ad4773c6",
-            "02eb1680-22a3-4006-88d1-46060f4977ab"
+    int[] ids = {
+            1,
+            2
     };
 
     @Override
@@ -45,7 +45,7 @@ public class tela_principal extends AppCompatActivity {
                 new RecyclerItemClickListener(tela_principal.this, recyclerViewFood ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         Log.d("rapid", "onItemClick position: " + position);
-                        String idParaProduto = ids[position]; // Obtém o ID correspondente
+                        int idParaProduto = ids[position];
                         ChamarPagamentos(position, idParaProduto);
 
                     }
@@ -60,7 +60,7 @@ public class tela_principal extends AppCompatActivity {
 
 
     }
-    private void ChamarPagamentos(int position, String idParaProduto){
+    private void ChamarPagamentos(int position, int idParaProduto){
         Food food = foodList.get(position);
         if (food != null) {
             Intent intent = new Intent(tela_principal.this, pagamento.class);

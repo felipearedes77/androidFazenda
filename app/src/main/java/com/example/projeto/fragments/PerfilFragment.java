@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.projeto.FormCadastro;
 import com.example.projeto.FormLogin;
+import com.example.projeto.PerfilDoUsuario;
 import com.example.projeto.R;
 import com.example.projeto.adapter.ItensPHAdapter;
 import com.example.projeto.arrays.ConstrantsHomes;
@@ -100,7 +101,7 @@ public class PerfilFragment extends Fragment {
                     public void onItemClick(View view, int position) {
                         Log.d("rapid", "onItemClick position: " + position);
                         if(position==0){
-
+                        callDados();
                         }
                         else{
                             if (position==1)
@@ -133,4 +134,9 @@ public class PerfilFragment extends Fragment {
         Intent intent = new Intent(getActivity(), FormLogin.class);
         startActivity(intent);
     }
+    private void callDados() {
+        Intent intent = new Intent(getActivity(), PerfilDoUsuario.class);
+        startActivity(intent);
+    }
+
 }

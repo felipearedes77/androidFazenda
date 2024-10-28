@@ -16,6 +16,15 @@
         android:theme="@style/Theme.Projeto"
         tools:targetApi="31">
         <activity
+            android:name=".doacao"
+            android:exported="false" />
+        <activity
+            android:name=".obrigado"
+            android:exported="false" />
+        <activity
+            android:name=".PixGG"
+            android:exported="false" />
+        <activity
             android:name=".Verduras"
             android:exported="false" />
         <activity

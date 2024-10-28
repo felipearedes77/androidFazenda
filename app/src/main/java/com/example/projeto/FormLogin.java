@@ -74,7 +74,7 @@ public class FormLogin extends AppCompatActivity {
                     usuario = new Usuario();
                 usuario.setEmail(textemail);
                 usuario.setSenha(textsenha);
-                EntrarnaConta( usuario );
+                EntrarnaConta(usuario);
             }
         });
         estado();
@@ -97,7 +97,7 @@ public class FormLogin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             ProgressBar.setVisibility(View.GONE);
-                            Intent intent = new Intent(FormLogin.this, tela_principal.class);
+                            Intent intent = new Intent(FormLogin.this, PerfilDoUsuario.class);
                             startActivity(intent);
 
                         }else{
@@ -126,12 +126,11 @@ public class FormLogin extends AppCompatActivity {
     private void autenticacao(){
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        if(user == null){
-            startActivity(new Intent(this, FormCadastro.class));
+        if(user != null){
+            startActivity(new Intent(this, PerfilDoUsuario.class));
         }
         else {
 
-            startActivity(new Intent(this, PerfilDoUsuario.class));
 
         }
     }
