@@ -19,6 +19,7 @@ import com.example.projeto.Verduras;
 import com.example.projeto.adapter.ItensPHAdapter;
 import com.example.projeto.arrays.ConstrantsProdutos;
 import com.example.projeto.databinding.FragmentProdutosBinding;
+import com.example.projeto.doacao;
 import com.example.projeto.model.Food;
 import com.example.projeto.model.ItensParaHome;
 import com.example.projeto.model.RecyclerItemClickListener;
@@ -130,7 +131,7 @@ public class ProdutosFragment extends Fragment {
         startActivity(intent);
     }
     private void callDoa() {
-        Intent intent = new Intent(getActivity(), FormLogin.class);
+        Intent intent = new Intent(getActivity(), doacao.class);
         startActivity(intent);
     }
 }

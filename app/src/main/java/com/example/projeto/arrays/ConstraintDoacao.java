@@ -8,10 +8,9 @@ import java.util.ArrayList;
 public class ConstraintDoacao {
     public static ArrayList<Food> getDoaData() {
         ArrayList<Food> doacaoList = new ArrayList<>();
-        Food verdura1 = new Food(R.drawable.alface, "cenoura", "Banana Fresca e Natural Produzida em Fazenda", "Clique para verificar o preço");
+        Food verdura1 = new Food(R.drawable.cenoura, "Cenoura", "Cenoura Natural Produzida em Fazenda", "Clique para ver a Disponibilidade");
         doacaoList.add(verdura1);
         return doacaoList;
-
 
     }
 }

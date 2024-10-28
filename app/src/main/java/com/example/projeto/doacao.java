@@ -64,7 +64,7 @@ public class doacao extends AppCompatActivity {
     private void ChamarPagamentos(int position, int idParaProduto){
         Food food = doacaoList.get(position);
         if (food != null) {
-            Intent intent = new Intent(this, pagamento.class);
+            Intent intent = new Intent(this, doacaoforeal.class);
             intent.putExtra("produtoNome", food.getNameFood());
             intent.putExtra("produtoImagem", food.getImgFood());
             intent.putExtra("produtoID", idParaProduto);
