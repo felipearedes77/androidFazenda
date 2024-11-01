@@ -27,7 +27,9 @@ public class Verduras extends AppCompatActivity {
     private ArrayList<Food> verduraList;
     int[] ids = {
             3,
-            4
+            4,
+            5,
+            6
     };
 
     @Override
