@@ -15,10 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.projeto.FormLogin;
-import com.example.projeto.R;
+import com.example.projeto.Verduras;
 import com.example.projeto.adapter.ItensPHAdapter;
 import com.example.projeto.arrays.ConstrantsHomes;
 import com.example.projeto.databinding.FragmentHomeBinding;
+import com.example.projeto.doacao;
 import com.example.projeto.model.ItensParaHome;
 import com.example.projeto.model.RecyclerItemClickListener;
 import com.example.projeto.tela_principal;
@@ -89,11 +90,19 @@ public class HomeFragment extends Fragment {
                     public void onItemClick(View view, int position) {
                         Log.d("rapid", "onItemClick position: " + position);
                         if(position==0){
-                            callProdutos();
+                            callVerduras();
                         }
                         else{
-                            if (position==2)
-                                callPerfil();
+                            if (position==1)
+                                callFrutas();
+                            else{
+                                if (position==2)
+                                    callDoacao();
+                                else {
+                                    if (position==3)
+                                        callPerfil();
+                                }
+                            }
                         }
 
                     }
@@ -109,12 +118,20 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null; // Prevent memory leaks by nulling the binding
     }
-    private void callProdutos() {
+    private void callFrutas() {
         Intent intent = new Intent(getActivity(), tela_principal.class);
         startActivity(intent);
     }
     private void callPerfil() {
         Intent intent = new Intent(getActivity(), FormLogin.class);
+        startActivity(intent);
+    }
+    private void callVerduras() {
+        Intent intent = new Intent(getActivity(), Verduras.class);
+        startActivity(intent);
+    }
+    private void callDoacao() {
+        Intent intent = new Intent(getActivity(), doacao.class);
         startActivity(intent);
     }
 }

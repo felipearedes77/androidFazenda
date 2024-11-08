@@ -19,8 +19,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerViewHome"
         android:layout_width="wrap_content"
-        android:layout_height="450dp"
+        android:layout_height="550dp"
         android:layout_gravity="center"
-        />
+        android:layout_marginTop="50dp"/>
 
 </FrameLayout>
