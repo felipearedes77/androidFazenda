@@ -96,7 +96,7 @@ public class FormCadastro extends AppCompatActivity {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111:1777")
+                .baseUrl("http://10.0.2.2:1777")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(new NullOnEmptyConverterFactory())
                 .client(client)

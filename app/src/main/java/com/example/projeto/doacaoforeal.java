@@ -3,6 +3,7 @@ package com.example.projeto;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class doacaoforeal extends AppCompatActivity {
-    private TextView txtProdutoNome ,txtPreco , txtQtdEstoque;
+    private TextView txtProdutoNome ,txtPreco , txtQtdEstoque , txtProdutoIndisponivel;
     private ImageView imgProduto;
     private Retrofit retrofit;
     private Button btnComprar;
@@ -39,12 +40,13 @@ public class doacaoforeal extends AppCompatActivity {
         String produtoNome = intent.getStringExtra("produtoNome");
         int produtoImagem = intent.getIntExtra("produtoImagem", R.drawable.banana1);
         int produtoID = intent.getIntExtra("produtoID", -1);
+        txtProdutoIndisponivel = findViewById(R.id.produtoIndisponivel);
         txtProdutoNome = findViewById(R.id.produtopag);
         imgProduto = findViewById(R.id.imgpag);
         txtProdutoNome.setText(produtoNome);
         imgProduto.setImageResource(produtoImagem);
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111:1777")
+                .baseUrl("http://10.0.2.2:1777")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
@@ -56,6 +58,9 @@ public class doacaoforeal extends AppCompatActivity {
                     Produtos produto = response.body();
                     txtQtdEstoque = findViewById(R.id.qtdestoque);
                     txtQtdEstoque.setText(String.valueOf(produto.getQtd_estoque()));
+                    if (produto.getQtd_estoque() < 1500) {
+                     teladefalha();
+                    }
                 } else {
                     Log.e("pagamento", "Resposta vazia: " + response.message());
                 }
@@ -106,5 +111,9 @@ public class doacaoforeal extends AppCompatActivity {
     }
     private void callComponent(){
         btnComprar=findViewById(R.id.btn_comprar);
+    }
+    private void teladefalha(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

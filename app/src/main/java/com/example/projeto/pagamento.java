@@ -21,6 +21,8 @@ import com.example.projeto.model.Produtos;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,8 +51,12 @@ public class pagamento extends AppCompatActivity {
         imgProduto = findViewById(R.id.imgpag);
         txtProdutoNome.setText(produtoNome);
         imgProduto.setImageResource(produtoImagem);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111:1777")
+                .baseUrl("http://10.0.2.2:1777")
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);

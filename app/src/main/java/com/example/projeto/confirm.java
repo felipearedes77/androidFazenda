@@ -42,7 +42,7 @@ public class confirm extends AppCompatActivity {
         txt_quantidade = findViewById(R.id.txt_quantidade);
         txt_quantidade.setText(String.valueOf(quantidadeSelecionada));
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111:1777")
+                .baseUrl("http://10.0.2.2:1777")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
